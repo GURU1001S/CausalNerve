@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="docs/logo.png" alt="CausalNerve Logo" width="250">
+</div>
+
 # 🏛️ CAUSALNERVE: THE DEFINITIVE ENTERPRISE GUIDE
 **Version: v1.0.5** | **Architecture Manual & Operational Bible**
 
