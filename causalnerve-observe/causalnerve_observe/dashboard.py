@@ -388,3 +388,10 @@ class CausalRuntimeObservatory:
     def launch(self, port: int = 7860, share: bool = False):
         """Launch the observatory."""
         self.app.launch(server_port=port, share=share)
+
+def observe(nerve_instance, port=7860):
+    """
+    Launch the interactive CausalNerve Observatory.
+    """
+    obs = CausalRuntimeObservatory(nerve_instance)
+    obs.launch(port=port)

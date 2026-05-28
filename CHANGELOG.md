@@ -1,0 +1,13 @@
+# Changelog
+
+## [1.0.1] - 2026-05-28
+### Added
+- Created isolated automated testing script `scripts/full_external_validation.py` to ensure complete ecosystem stability in fresh Python virtual environments.
+
+### Fixed
+- **Memory Packaging:** Added `causalnerve.memory` to the PyPI package containing `StructuralMemoryBank`, `EpisodicMemory`, `RecurrenceEngine`, and `MotifArchive`.
+- **Rollout API:** Stabilized the `rollout` signature to `rollout(intervention=None, horizon=50, steps=None)`. The `intervention` argument is no longer required and correctly executes baseline (factual) predictions when omitted.
+- **Observability Packaging:** Reconstructed `causalnerve-observe` PyPI deployment. Fixed `observe` import path to execute properly out-of-the-box (`from causalnerve_observe import observe`).
+
+### Changed
+- Both `causalnerve` and `causalnerve-observe` version numbers bumped to `1.0.1` for synchronization.

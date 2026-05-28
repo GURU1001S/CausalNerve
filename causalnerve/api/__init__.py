@@ -70,8 +70,6 @@ class _Validate:
             idx = _Validate.node(k, name_map, n_nodes)
             val = _Validate.value(v, name=f"value for node '{k}'")
             out[idx] = val
-        if not out:
-            raise ValueError("Intervention dict is empty")
         return out
 
 
@@ -526,16 +524,24 @@ class CausalNerve:
 
     # ─── rollout() -> CounterfactualEngine ───────────
 
-    def rollout(self, intervention: Dict[Union[int, str], float]) -> Dict[str, Any]:
+    def rollout(self, intervention: Optional[Dict[Union[int, str], float]] = None, horizon: int = 50, steps: Optional[int] = None) -> Dict[str, Any]:
         """
         Full dual-world rollout with trajectory and divergence tracking.
         
         Args:
-            intervention (Dict[Union[int, str], float]): Node to value mapping for the intervention.
+            intervention (Dict[Union[int, str], float], optional): Node to value mapping for the intervention.
+            horizon (int): The number of steps to simulate. Defaults to 50.
+            steps (int, optional): Deprecated alias for horizon.
             
         Returns:
             Dict[str, Any]: Rollout simulation results.
         """
+        if steps is not None:
+            horizon = steps
+            
+        if intervention is None:
+            intervention = {}
+            
         int_map = _Validate.intervention_dict(
             intervention, self._name_to_idx, self.graph.n_nodes
         )
@@ -544,7 +550,7 @@ class CausalNerve:
             self.graph,
             intervention=int_map,
             initial_states=self._states.copy(),
-            horizon=50
+            horizon=horizon
         )
 
         return {
