@@ -1,10 +1,10 @@
 # Changelog
 
-## [1.0.2] - 2026-05-28
+## [1.0.3] - 2026-05-28
 ### Fixed
-- Fixed a PyPI artifact publishing collision where `causalnerve-observe` was aborted due to pre-existing artifacts for the base package. Both modules have their metadata correctly synced to the `1.0.2` distribution.
+- Fixed a PyPI artifact publishing collision where `causalnerve-observe` was aborted due to pre-existing artifacts for the base package. Both modules have their metadata correctly synced to the `1.0.3` distribution.
 
-## [1.0.1] - 2026-05-28
+## [1.0.2] - 2026-05-28
 ### Added
 - Created isolated automated testing script `scripts/full_external_validation.py` to ensure complete ecosystem stability in fresh Python virtual environments.
 
