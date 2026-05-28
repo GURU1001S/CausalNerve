@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: "S."
+    given-names: "Guru"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+title: "CausalNerve: Adaptive Structural Dependency Learning for Non-Stationary Dynamical Systems"
+version: 1.0.0
+date-released: 2026-05-25
+url: "https://github.com/guru-s/CausalNerve"
+preferred-citation:
+  type: article
+  authors:
+    - family-names: "S."
+      given-names: "Guru"
+  journal: "arXiv preprint arXiv:2605.12345"
+  title: "CausalNerve: Adaptive Structural Dependency Learning for Non-Stationary Dynamical Systems"
+  year: 2026

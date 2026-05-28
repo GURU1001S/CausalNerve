@@ -1,0 +1,70 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "causalnerve"
+version = "1.0.0"
+description = "Adaptive Structural Dependency Learning for Non-Stationary Dynamical Systems"
+readme = "README.md"
+authors = [
+    { name = "CausalNerve Core Team", email = "hello@example.com" }
+]
+license = { text = "MIT" }
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Manufacturing",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Physics"
+]
+
+# Core dependencies only (lightweight inference)
+dependencies = [
+    "torch>=2.0.0",
+    "numpy>=1.22.0",
+    "pandas>=1.5.0",
+    "networkx>=3.0"
+]
+requires-python = ">=3.9"
+
+[project.urls]
+"Homepage" = "https://github.com/guru-s/CausalNerve"
+"Bug Tracker" = "https://github.com/guru-s/CausalNerve/issues"
+
+[project.optional-dependencies]
+# Dependencies for the UI dashboard / Observatory
+viz = [
+    "fastapi>=0.100.0",
+    "uvicorn[standard]>=0.22.0",
+    "plotly>=5.10.0",
+    "dash>=2.7.0"
+]
+
+# Dependencies for running scientific benchmarks
+benchmarks = [
+    "scipy>=1.9.0",
+    "statsmodels>=0.14.0",
+    "scikit-learn>=1.2.0"
+]
+
+# Full installation
+all = [
+    "causalnerve[viz,benchmarks]"
+]
+
+[project.scripts]
+causalnerve-demo = "causalnerve.cli:run_demo"
+causalnerve-observatory = "causalnerve.cli:run_observatory"
+causalnerve-benchmark = "causalnerve.cli:run_benchmark"
+
+[tool.setuptools.packages.find]
+include = ["causalnerve*", "benchmarks*"]

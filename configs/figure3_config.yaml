@@ -1,0 +1,4 @@
+random_seeds: [42, 43, 44, 45, 46]
+n_nodes: 5
+noise_level: 0.05
+benchmark_type: "var"

@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+outsider_venv/
+build/
+dist/
+results/
+logs/
+.tempmediaStorage/
+*.db
+*.csv
+*.jsonl
+*.ndjson

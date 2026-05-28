@@ -1,0 +1,79 @@
+name: Reproducibility Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 0 * * 0'  # Weekly on Sunday
+
+env:
+  PYTHONHASHSEED: "42"  # Deterministic seed control
+
+jobs:
+  smoke-and-reproduce:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ['3.9', '3.10', '3.11']
+        
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip' # Dependency verification and pip caching
+          
+      - name: Cache datasets
+        uses: actions/cache@v3
+        with:
+          path: data/
+          key: ${{ runner.os }}-datasets-${{ hashFiles('**/datasets/*.py') }}
+          
+      - name: Install System Dependencies (Ubuntu)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+        
+      - name: Install System Dependencies (macOS)
+        if: runner.os == 'macOS'
+        run: brew install ffmpeg
+        
+      - name: Install System Dependencies (Windows)
+        if: runner.os == 'Windows'
+        run: choco install ffmpeg
+        
+      - name: Install CausalNerve
+        run: pip install -e ".[dev]"
+        
+      - name: Environment Validation & FFmpeg Check
+        run: |
+          python -c "import torch; print('Torch OK')"
+          python -c "import matplotlib.animation as anim; print('FFmpeg Available:', anim.writers.is_available('ffmpeg'))"
+          
+      - name: Pytest Smoke Tests
+        run: pytest tests/ --maxfail=1 -v
+        
+      - name: Quick Reproduction Check (5 seeds)
+        run: python reproduce.py --quick --seeds 42,43,44,45,46
+        
+      - name: Upload Logs on Failure
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: failure-logs-${{ runner.os }}-py${{ matrix.python-version }}
+          path: logs/
+          
+      - name: Upload Reproducibility Artifacts
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: reproduced-assets-${{ runner.os }}-py${{ matrix.python-version }}
+          path: |
+            results/reproduced/
+            assets/

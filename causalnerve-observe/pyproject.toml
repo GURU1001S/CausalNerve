@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "causalnerve-observe"
+version = "0.1.0"
+description = "CausalNerve Observatory and visualization package"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "causalnerve>=0.1.0",
+    "plotly>=5.0",
+    "dash>=2.0",
+    "gradio>=4.0",
+]
