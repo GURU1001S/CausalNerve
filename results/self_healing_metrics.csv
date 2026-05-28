@@ -1,0 +1,4 @@
+cycle,event,leakage,healing_action
+5,Spoofing Injected,12935.705156799495,none
+6,Self-Healing Triggered,0.9747265868960643,quarantine (rolled back)
+8,Drift Stabilization,0.0,none

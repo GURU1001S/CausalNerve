@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
+<rect width="600" height="400" fill="#0D1B2A"/>
+<circle cx="300" cy="50" r="16" fill="#DC262622" stroke="#DC2626" stroke-width="2"/>
+<text x="300" y="54" text-anchor="middle" fill="#E2E8F0" font-size="8" font-weight="bold">Fan</text>
+<circle cx="365" cy="65" r="16" fill="#DC262622" stroke="#DC2626" stroke-width="2"/>
+<text x="365" y="69" text-anchor="middle" fill="#E2E8F0" font-size="8" font-weight="bold">LPC</text>
+<circle cx="417" cy="106" r="16" fill="#DC262622" stroke="#DC2626" stroke-width="2"/>
+<text x="417" y="110" text-anchor="middle" fill="#E2E8F0" font-size="8" font-weight="bold">HPC</text>
+<circle cx="446" cy="167" r="16" fill="#DC262622" stroke="#DC2626" stroke-width="2"/>
+<text x="446" y="171" text-anchor="middle" fill="#E2E8F0" font-size="8" font-weight="bold">Combustor</text>
+<circle cx="446" cy="233" r="16" fill="#DC262622" stroke="#DC2626" stroke-width="2"/>
+<text x="446" y="237" text-anchor="middle" fill="#E2E8F0" font-size="8" font-weight="bold">HPT</text>
+<circle cx="417" cy="294" r="16" fill="#DC262622" stroke="#DC2626" stroke-width="2"/>
+<text x="417" y="298" text-anchor="middle" fill="#E2E8F0" font-size="8" font-weight="bold">LPT</text>
+<circle cx="365" cy="335" r="16" fill="#DC262622" stroke="#DC2626" stroke-width="2"/>
+<text x="365" y="339" text-anchor="middle" fill="#E2E8F0" font-size="8" font-weight="bold">H.Spool</text>
+<circle cx="300" cy="350" r="16" fill="#DC262622" stroke="#DC2626" stroke-width="2"/>
+<text x="300" y="354" text-anchor="middle" fill="#E2E8F0" font-size="8" font-weight="bold">L.Spool</text>
+<circle cx="235" cy="335" r="16" fill="#DC262622" stroke="#DC2626" stroke-width="2"/>
+<text x="235" y="339" text-anchor="middle" fill="#E2E8F0" font-size="8" font-weight="bold">P.Bank</text>
+<circle cx="183" cy="294" r="16" fill="#DC262622" stroke="#DC2626" stroke-width="2"/>
+<text x="183" y="298" text-anchor="middle" fill="#E2E8F0" font-size="8" font-weight="bold">Cooling</text>
+<circle cx="154" cy="233" r="16" fill="#DC262622" stroke="#DC2626" stroke-width="2"/>
+<text x="154" y="237" text-anchor="middle" fill="#E2E8F0" font-size="8" font-weight="bold">Bypass</text>
+<circle cx="154" cy="167" r="16" fill="#DC262622" stroke="#DC2626" stroke-width="2"/>
+<text x="154" y="171" text-anchor="middle" fill="#E2E8F0" font-size="8" font-weight="bold">Fuel</text>
+<circle cx="183" cy="106" r="16" fill="#DC262622" stroke="#DC2626" stroke-width="2"/>
+<text x="183" y="110" text-anchor="middle" fill="#E2E8F0" font-size="8" font-weight="bold">Snsr.A</text>
+<circle cx="235" cy="65" r="16" fill="#DC262622" stroke="#DC2626" stroke-width="2"/>
+<text x="235" y="69" text-anchor="middle" fill="#E2E8F0" font-size="8" font-weight="bold">Snsr.B</text>
+</svg>

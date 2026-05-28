@@ -1,0 +1,6 @@
+Config,FSR,Det_Delay
+Baseline (Current),0.875,12.0
++ Causal Sufficiency,0.052,12.0
++ Delayed Confirmation,0.109375,15.0
++ Adaptive Threshold,0.35000000000000003,16.5
+All Three Combined,0.0019906249999999998,19.5

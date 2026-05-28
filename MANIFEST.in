@@ -1,0 +1,15 @@
+include README.md
+include LICENSE
+include requirements.txt
+recursive-include docs *.md
+recursive-include configs *.yaml *.json
+
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+recursive-exclude * .pytest_cache
+recursive-exclude * outsider_venv
+recursive-exclude eeg_data *
+recursive-exclude data *
+recursive-exclude scratch *
+recursive-exclude results *.csv *.json *.md *.log
+recursive-exclude logs *

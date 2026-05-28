@@ -1,0 +1,5 @@
+scenario,match_cost,prediction_accuracy,status
+recurring degradation,0.0,100.0,SUCCESS
+repeated EEG seizure motifs,0.0,100.0,SUCCESS
+financial crash recurrences,0.0,100.0,SUCCESS
+climate oscillation cycles,0.0,100.0,SUCCESS

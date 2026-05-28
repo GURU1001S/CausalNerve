@@ -1,0 +1,2 @@
+Crashed at cycle 1000
+Error: GraphState.__init__() got an unexpected keyword argument 'adjacency'

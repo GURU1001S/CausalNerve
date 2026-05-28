@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CausalNerve Leaderboard</title>
+<style>
+    body { font-family: 'Inter', system-ui, sans-serif; background: #0F172A; color: #E2E8F0; margin: 0; padding: 40px; }
+    h1 { color: #F8FAFC; border-bottom: 1px solid #334155; padding-bottom: 10px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; background: #1E293B; border-radius: 8px; overflow: hidden; }
+    th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #334155; }
+    th { background: #0F172A; color: #94A3B8; text-transform: uppercase; font-size: 12px; cursor: pointer; }
+    th:hover { color: #F8FAFC; }
+    tr:hover { background: #334155; }
+    .charts { display: flex; gap: 20px; margin-top: 40px; flex-wrap: wrap; }
+    .chart-card { background: #1E293B; border: 1px solid #334155; border-radius: 8px; padding: 20px; }
+    .failures { margin-top: 40px; background: rgba(220, 38, 38, 0.1); border: 1px solid #DC2626; border-radius: 8px; padding: 20px; }
+    .failures h2 { color: #FCA5A5; margin-top: 0; }
+</style>
+</head>
+<body>
+    <h1>CausalNerve Scientific Leaderboard</h1>
+    <p>Last updated: 2026-05-26 17:23:18 UTC</p>
+    
+    <table id="leaderboard-table">
+        <thead>
+            <tr>
+                <th onclick="sortTable(0)">Model ↕</th>
+                <th onclick="sortTable(1)">SHD ↕</th>
+                <th onclick="sortTable(2)">SID ↕</th>
+                <th onclick="sortTable(3)">ECE ↕</th>
+                <th onclick="sortTable(4)">False Surgery Rate ↕</th>
+                <th onclick="sortTable(5)">Runtime (s) ↕</th>
+            </tr>
+        </thead>
+        <tbody>
+<tr><td><strong>VARLiNGAM</strong></td><td>146.00 ± 8.56</td><td>146.00 ± 8.56</td><td>0.372</td><td>0.902</td><td>0.000</td></tr><tr><td><strong>DYNOTEARS</strong></td><td>165.20 ± 5.78</td><td>165.20 ± 5.78</td><td>0.369</td><td>0.908</td><td>0.000</td></tr><tr><td><strong>PCMCI</strong></td><td>32.00 ± 4.73</td><td>32.00 ± 4.73</td><td>0.402</td><td>0.891</td><td>0.000</td></tr>
+        </tbody>
+    </table>
+    
+    <div class="charts">
+<div class="chart-card"><svg width="400" height="250" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg"><text x="200.0" y="20" font-family="sans-serif" font-size="14" fill="#E2E8F0" text-anchor="middle" font-weight="bold">SHD Distribution (Lower is Better)</text><rect x="70.0" y="84.80222445201727" width="60.0" height="135.19777554798273" fill="#10B981" rx="2" opacity="0.8" /><line x1="100.0" y1="76.87780265050925" x2="100.0" y2="92.72664625352529" stroke="#F87171" stroke-width="2" /><line x1="97.0" y1="76.87780265050925" x2="103.0" y2="76.87780265050925" stroke="#F87171" stroke-width="2" /><line x1="97.0" y2="92.72664625352529" x2="103.0" y2="92.72664625352529" stroke="#F87171" stroke-width="2" /><text x="100.0" y="240" font-family="sans-serif" font-size="10" fill="#9CA3AF" text-anchor="middle">VARLiNGAM</text><text x="100.0" y="66.87780265050925" font-family="sans-serif" font-size="10" fill="#E2E8F0" text-anchor="middle">146.00</text><rect x="170.0" y="67.02279095529627" width="60.0" height="152.97720904470373" fill="#10B981" rx="2" opacity="0.8" /><line x1="200.0" y1="61.66666666666667" x2="200.0" y2="72.37891524392587" stroke="#F87171" stroke-width="2" /><line x1="197.0" y1="61.66666666666667" x2="203.0" y2="61.66666666666667" stroke="#F87171" stroke-width="2" /><line x1="197.0" y2="72.37891524392587" x2="203.0" y2="72.37891524392587" stroke="#F87171" stroke-width="2" /><text x="200.0" y="240" font-family="sans-serif" font-size="10" fill="#9CA3AF" text-anchor="middle">DYNOTEARS</text><text x="200.0" y="51.66666666666667" font-family="sans-serif" font-size="10" fill="#E2E8F0" text-anchor="middle">165.20</text><rect x="270.0" y="190.3676108387983" width="60.0" height="29.63238916120169" fill="#10B981" rx="2" opacity="0.8" /><line x1="300.0" y1="185.98931825431401" x2="300.0" y2="194.74590342328258" stroke="#F87171" stroke-width="2" /><line x1="297.0" y1="185.98931825431401" x2="303.0" y2="185.98931825431401" stroke="#F87171" stroke-width="2" /><line x1="297.0" y2="194.74590342328258" x2="303.0" y2="194.74590342328258" stroke="#F87171" stroke-width="2" /><text x="300.0" y="240" font-family="sans-serif" font-size="10" fill="#9CA3AF" text-anchor="middle">PCMCI</text><text x="300.0" y="175.98931825431401" font-family="sans-serif" font-size="10" fill="#E2E8F0" text-anchor="middle">32.00</text></svg></div><div class="chart-card"><svg width="400" height="250" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg"><text x="200.0" y="20" font-family="sans-serif" font-size="14" fill="#E2E8F0" text-anchor="middle" font-weight="bold">Runtime Scaling (Seconds)</text><rect x="70.0" y="220.0" width="60.0" height="0.0" fill="#F59E0B" rx="2" opacity="0.8" /><line x1="100.0" y1="220.0" x2="100.0" y2="220.0" stroke="#F87171" stroke-width="2" /><line x1="97.0" y1="220.0" x2="103.0" y2="220.0" stroke="#F87171" stroke-width="2" /><line x1="97.0" y2="220.0" x2="103.0" y2="220.0" stroke="#F87171" stroke-width="2" /><text x="100.0" y="240" font-family="sans-serif" font-size="10" fill="#9CA3AF" text-anchor="middle">VARLiNGAM</text><text x="100.0" y="210.0" font-family="sans-serif" font-size="10" fill="#E2E8F0" text-anchor="middle">0.00</text><rect x="170.0" y="220.0" width="60.0" height="0.0" fill="#F59E0B" rx="2" opacity="0.8" /><line x1="200.0" y1="220.0" x2="200.0" y2="220.0" stroke="#F87171" stroke-width="2" /><line x1="197.0" y1="220.0" x2="203.0" y2="220.0" stroke="#F87171" stroke-width="2" /><line x1="197.0" y2="220.0" x2="203.0" y2="220.0" stroke="#F87171" stroke-width="2" /><text x="200.0" y="240" font-family="sans-serif" font-size="10" fill="#9CA3AF" text-anchor="middle">DYNOTEARS</text><text x="200.0" y="210.0" font-family="sans-serif" font-size="10" fill="#E2E8F0" text-anchor="middle">0.00</text><rect x="270.0" y="178.07344501965412" width="60.0" height="41.92655498034587" fill="#F59E0B" rx="2" opacity="0.8" /><line x1="300.0" y1="61.66666666666664" x2="300.0" y2="294.4802233726416" stroke="#F87171" stroke-width="2" /><line x1="297.0" y1="61.66666666666664" x2="303.0" y2="61.66666666666664" stroke="#F87171" stroke-width="2" /><line x1="297.0" y2="294.4802233726416" x2="303.0" y2="294.4802233726416" stroke="#F87171" stroke-width="2" /><text x="300.0" y="240" font-family="sans-serif" font-size="10" fill="#9CA3AF" text-anchor="middle">PCMCI</text><text x="300.0" y="51.66666666666664" font-family="sans-serif" font-size="10" fill="#E2E8F0" text-anchor="middle">0.00</text></svg></div>
+    </div>
+
+    <script>
+    function sortTable(n) {
+      var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+      table = document.getElementById("leaderboard-table");
+      switching = true;
+      dir = "asc"; 
+      while (switching) {
+        switching = false;
+        rows = table.rows;
+        for (i = 1; i < (rows.length - 1); i++) {
+          shouldSwitch = false;
+          x = rows[i].getElementsByTagName("TD")[n];
+          y = rows[i + 1].getElementsByTagName("TD")[n];
+          var xv = parseFloat(x.innerHTML.split(' ')[0]) || x.innerHTML.toLowerCase();
+          var yv = parseFloat(y.innerHTML.split(' ')[0]) || y.innerHTML.toLowerCase();
+          if (dir == "asc") {
+            if (xv > yv) { shouldSwitch = true; break; }
+          } else if (dir == "desc") {
+            if (xv < yv) { shouldSwitch = true; break; }
+          }
+        }
+        if (shouldSwitch) {
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+          switchcount ++;      
+        } else {
+          if (switchcount == 0 && dir == "asc") {
+            dir = "desc";
+            switching = true;
+          }
+        }
+      }
+    }
+    </script>
+</body>
+</html>

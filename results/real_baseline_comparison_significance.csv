@@ -1,0 +1,4 @@
+Comparison,U,p_value,effect_size_r
+CausalNerve vs PCMCI,0.0,7.977225974549176e-09,1.0
+CausalNerve vs VAR-LiNGAM,0.0,4.682682358742056e-10,1.0
+CausalNerve vs Granger,0.0,7.991873609945388e-09,1.0

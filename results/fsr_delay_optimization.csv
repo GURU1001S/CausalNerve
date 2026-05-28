@@ -1,0 +1,5 @@
+Version,FSR,Detection Delay,Description
+Original,0.875,12.0,High noise sensitivity
+Current Hardened,0.002,19.5,Fixed 3-cycle gate + strict Lyapunov
+Adaptive Confirmation,0.006,16.2,Multi-Tier gate (1-5 cycles based on confidence)
+Full Optimized,0.008,13.4,FastTrack + Bayesian Fusion + Risk-Adaptive

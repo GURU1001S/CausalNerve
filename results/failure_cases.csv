@@ -1,0 +1,2 @@
+Method,Benchmark,Noise,Dropout,Seed,SHD,DetectionDelay,FSR,RuntimeMs
+CausalNerve,VAR Process,0.01,0.0,42,12,,1.0,127542.26732254028

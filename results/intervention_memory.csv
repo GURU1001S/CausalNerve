@@ -1,0 +1,4 @@
+intervention_id,engine_id,cycle_applied,timestamp,proposed_edge,removed_edge,leakage_before,lyapunov_before,ece_before,leakage_after,lyapunov_after,ece_after,leakage_trajectory,lyapunov_trajectory,estimated_cycles_improvement,survival_duration,rollback_occurrence,environment_metadata
+hist_001,E-011,50,2026,"(4, 2)",,0.31,3.4,0.08,0.02,2.1,0.04,"{""10"": 0.02, ""50"": 0.03, ""100"": 0.04}","{""10"": 2.1, ""50"": 2.2, ""100"": 2.3}",0,120,False,{}
+hist_002,E-012,50,2026,"(11, 3)",,0.25,4.1,0.08,0.05,3.1,0.04,{},{},0,40,True,{}
+live_001,E-LIVE,187,2026,"(4, 2)",,0.31500842662412254,3.41,0.1,0.03,2.14,0.05,"{""10"": 0.261587201314489, ""50"": 0.07605333480621246, ""100"": 0.011077645395335609, ""300"": 0.00743435120436714}","{""10"": 3.297610619469027, ""50"": 2.848053097345133, ""100"": 2.286106194690266, ""300"": 2.1603496809828866}",0,300,False,{}
