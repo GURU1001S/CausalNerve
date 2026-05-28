@@ -22,7 +22,7 @@ from datetime import datetime
 from pathlib import Path
 
 # Resolve absolute path to the repository root
-REPO_ROOT = Path(__file__).resolve().parent
+REPO_ROOT = Path(__file__).resolve().parent.parent
 
 REPRODUCIBLE_RESULTS = {
     "table_1": {
@@ -46,7 +46,7 @@ REPRODUCIBLE_RESULTS = {
         "checksum": None
     },
     "flagship_gif": {
-        "script": "export_flagship_gif.py",
+        "script": "scripts/export_flagship_gif.py",
         "config": "configs/gif_config.yaml",
         "expected_output": "assets/flagship_demo.gif",
         "estimated_time_minutes": 5,

@@ -52,9 +52,19 @@ benchmarks = [
     "scikit-learn>=1.2.0"
 ]
 
+# Development dependencies
+dev = [
+    "pytest",
+    "pytest-cov",
+    "black",
+    "isort",
+    "mypy",
+    "matplotlib"
+]
+
 # Full installation
 all = [
-    "causalnerve[viz,benchmarks]"
+    "causalnerve[dev,benchmarks]"
 ]
 
 [project.scripts]
