@@ -28,7 +28,11 @@ jobs:
           pip install build twine
 
       - name: Build source and wheel distributions
-        run: python -m build
+        run: |
+          python -m build
+          cd causalnerve-observe
+          python -m build
+          cp dist/* ../dist/
 
       - name: Validate distribution files
         run: twine check dist/*
