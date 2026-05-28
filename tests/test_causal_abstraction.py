@@ -1,6 +1,6 @@
 import pytest
 import numpy as np
-from causalnerve.reasoning.hypothesis import (
+from causalnerve.reasoning.causal_abstraction import (
     AbstractionLayer, MotifCompressor, HierarchicalGraphSummarizer,
     TemporalPatternMiner, MacroCausalState
 )
