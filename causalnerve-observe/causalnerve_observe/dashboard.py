@@ -45,8 +45,15 @@ class CausalRuntimeObservatory:
         self.total_cycles = getattr(nerve, 'current_cycle', 0)
 
         # Replay engine
-        from causalnerve.memory.replay_engine import StructuralReplayEngine
-        self.replay = getattr(nerve, 'replay_engine', StructuralReplayEngine())
+        try:
+            from causalnerve.memory.replay_engine import StructuralReplayEngine
+        except ImportError:
+            StructuralReplayEngine = None
+
+        if StructuralReplayEngine is not None:
+            self.replay = getattr(nerve, 'replay_engine', StructuralReplayEngine())
+        else:
+            self.replay = None
 
         # Narrator
         from causalnerve.reasoning.explanation import RuntimeNarrator
@@ -389,9 +396,11 @@ class CausalRuntimeObservatory:
         """Launch the observatory."""
         self.app.launch(server_port=port, share=share)
 
-def observe(nerve_instance, port=7860):
+def observe(nerve_instance, port=7860, launch=True):
     """
     Launch the interactive CausalNerve Observatory.
     """
     obs = CausalRuntimeObservatory(nerve_instance)
-    obs.launch(port=port)
+    if launch:
+        obs.launch(port=port)
+    return obs

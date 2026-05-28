@@ -12,6 +12,12 @@ pip install causalnerve
 pip install causalnerve causalnerve-observe  # for dashboard
 ```
 
+### Upgrade Note
+To upgrade to the latest stabilized version:
+```bash
+pip install --upgrade causalnerve causalnerve-observe
+```
+
 ## Quickstart
 ```python
 from causalnerve import CausalNerve

@@ -1,0 +1,72 @@
+import numpy as np
+from dataclasses import dataclass
+from typing import Any, Dict, List, Optional, Tuple
+
+@dataclass
+class GraphSnapshot:
+    cycle: int
+    adjacency: Any
+    leakage: float
+    v_energy: float
+
+@dataclass
+class RevisionRecord:
+    cycle: int
+    edit_type: str
+    edge: Tuple[int, int]
+    confidence: float
+    v_before: float
+    v_after: float
+
+class StructuralReplayEngine:
+    def __init__(self, snapshot_interval: int = 10):
+        self.snapshot_interval = snapshot_interval
+        self.snapshots: List[GraphSnapshot] = []
+        self.revision_events: List[RevisionRecord] = []
+
+    def _safe_store(self, tensor: Any) -> Any:
+        if hasattr(tensor, "detach"):
+            return tensor.detach().cpu().numpy().copy()
+        return np.asarray(tensor).copy()
+
+    def record_snapshot(self, cycle: int, adjacency: Any, leakage: float, v_energy: float):
+        adj_safe = self._safe_store(adjacency)
+        snap = GraphSnapshot(
+            cycle=cycle,
+            adjacency=adj_safe,
+            leakage=float(leakage),
+            v_energy=float(v_energy)
+        )
+        self.snapshots.append(snap)
+
+    def record_revision(self, cycle: int, edit_type: str, edge: Tuple[int, int], confidence: float, v_before: float, v_after: float):
+        rev = RevisionRecord(
+            cycle=cycle,
+            edit_type=edit_type,
+            edge=edge,
+            confidence=float(confidence),
+            v_before=float(v_before),
+            v_after=float(v_after)
+        )
+        self.revision_events.append(rev)
+
+    def get_snapshot(self, cycle: int) -> Optional[GraphSnapshot]:
+        best_snap = None
+        for snap in self.snapshots:
+            if snap.cycle <= cycle:
+                if best_snap is None or snap.cycle > best_snap.cycle:
+                    best_snap = snap
+        return best_snap
+        
+    def get_graph_diff(self, cycle_a: int, cycle_b: int):
+        return None
+        
+    def get_revision_events_in_range(self, start_cycle: int, end_cycle: int):
+        return [r for r in self.revision_events if start_cycle <= r.cycle <= end_cycle]
+
+    def summary(self) -> Dict[str, Any]:
+        return {
+            "total_snapshots": len(self.snapshots),
+            "total_revisions": len(self.revision_events),
+            "latest_cycle": self.snapshots[-1].cycle if self.snapshots else 0
+        }

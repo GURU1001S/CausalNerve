@@ -2,10 +2,10 @@ from setuptools import setup, find_packages
 
 setup(
     name="causalnerve-observe",
-    version="1.0.3",
+    version="1.0.4",
     packages=find_packages(),
     install_requires=[
-        "causalnerve>=1.0.3",
+        "causalnerve>=1.0.4",
         "plotly>=5.0",
         "dash>=2.0",
         "gradio>=4.0",

@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4] - 2026-05-28
+### Fixed
+- Fixed missing `retrieve_similar` and broken `predict_transition` in memory bank.
+- Restored safe, minimal `StructuralReplayEngine` for observability.
+- Ensured graceful degradation of dashboard if replay engine is unavailable.
+- Upgraded `observe()` API to launch dynamically.
+
 ## [1.0.3] - 2026-05-28
 ### Fixed
 - Fixed a PyPI artifact publishing collision where `causalnerve-observe` was aborted due to pre-existing artifacts for the base package. Both modules have their metadata correctly synced to the `1.0.3` distribution.

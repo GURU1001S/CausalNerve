@@ -236,4 +236,6 @@ class LiveGraphVisualizer:
             )]
         )
         self.fig.write_html(path, auto_play=False)
-        print(f"[Visualizer] Continuous rendering compiled to: {path}")
+        import logging
+        logger = logging.getLogger("causalnerve.observe")
+        logger.info(f"[Visualizer] Continuous rendering compiled to: {path}")

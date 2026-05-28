@@ -105,4 +105,6 @@ class FleetEpidemiologyVisualizer:
             )]
         )
         self.fig.write_html(path, auto_play=False)
-        print(f"[Visualizer] Fleet Epidemiology dashboard compiled to: {path}")
+        import logging
+        logger = logging.getLogger("causalnerve.observe")
+        logger.info(f"[Visualizer] Fleet Epidemiology dashboard compiled to: {path}")
