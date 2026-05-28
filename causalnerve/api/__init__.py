@@ -395,7 +395,7 @@ class CausalNerve:
 
     # ─── why() -> CausalTracer ───────────────────────
 
-    def why(self, node: Any) -> dict:
+    def why(self, node: Any = None, target: Any = None) -> dict:
         """
         Root-cause analysis via weighted backward traversal.
 
@@ -403,7 +403,10 @@ class CausalNerve:
         decay to rank contributing causal chains. Confidence is derived
         from the concentration of influence in the top chain.
         """
-        idx = self._resolve_node(node)
+        target_node = target if target is not None else node
+        if target_node is None:
+            raise ValueError("Must provide either 'node' or 'target' to why()")
+        idx = self._resolve_node(target_node)
 
         result = self._tracer.trace(
             self.graph, idx,
@@ -570,6 +573,8 @@ class CausalNerve:
                 self.graph.node_name(i): round(float(v), 4)
                 for i, v in enumerate(result.world_1_trajectory[-1])
             },
+            "world_0_trajectory": result.world_0_trajectory,
+            "world_1_trajectory": result.world_1_trajectory,
         }
 
     def run_counterfactual(self, intervention: Dict[Union[int, str], float]) -> Dict[str, Any]:

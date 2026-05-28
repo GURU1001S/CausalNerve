@@ -30,9 +30,9 @@ class SyntheticStreamGenerator:
             yield state.copy()
             
     @staticmethod
-    def with_drift(n_nodes: int = 6, drift_at: int = 200, new_edge: Tuple[int, int] = (4, 2), seed: int = 42) -> Iterator[np.ndarray]:
+    def with_drift(n_nodes: int = 6, n_cycles: int = 500, drift_at: int = 200, new_edge: Tuple[int, int] = (4, 2), seed: int = 42) -> Iterator[np.ndarray]:
         """
-        Stable until cycle 200, then adds new_edge.
+        Stable until cycle drift_at, then adds new_edge.
         Used for the flagship demo and quickstart.
         """
         np.random.seed(seed)
@@ -44,7 +44,7 @@ class SyntheticStreamGenerator:
             adj[u, v] = 0.6
             
         cycle = 0
-        while cycle < drift_at + 100:
+        while cycle < n_cycles:
             if cycle == drift_at:
                 adj[new_edge[0], new_edge[1]] = 0.7
                 

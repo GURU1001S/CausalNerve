@@ -17,6 +17,14 @@ class RevisionRecord:
     confidence: float
     v_before: float
     v_after: float
+    rationale: str = ""
+    accepted: bool = True
+
+@dataclass
+class GraphDiff:
+    edges_added: List[Tuple[int, int]]
+    edges_removed: List[Tuple[int, int]]
+    weight_changes: Dict[Tuple[int, int], float]
 
 class StructuralReplayEngine:
     def __init__(self, snapshot_interval: int = 10):
@@ -39,14 +47,16 @@ class StructuralReplayEngine:
         )
         self.snapshots.append(snap)
 
-    def record_revision(self, cycle: int, edit_type: str, edge: Tuple[int, int], confidence: float, v_before: float, v_after: float):
+    def record_revision(self, cycle: int, edit_type: str, edge: Tuple[int, int], confidence: float, v_before: float, v_after: float, rationale: str = "", accepted: bool = True):
         rev = RevisionRecord(
             cycle=cycle,
             edit_type=edit_type,
             edge=edge,
             confidence=float(confidence),
             v_before=float(v_before),
-            v_after=float(v_after)
+            v_after=float(v_after),
+            rationale=rationale,
+            accepted=accepted
         )
         self.revision_events.append(rev)
 
@@ -58,8 +68,16 @@ class StructuralReplayEngine:
                     best_snap = snap
         return best_snap
         
-    def get_graph_diff(self, cycle_a: int, cycle_b: int):
-        return None
+    def get_graph_diff(self, cycle_a: int, cycle_b: int) -> GraphDiff:
+        added = []
+        removed = []
+        for rev in self.revision_events:
+            if cycle_a <= rev.cycle <= cycle_b and rev.accepted:
+                if rev.edit_type == "add":
+                    added.append(rev.edge)
+                elif rev.edit_type == "remove":
+                    removed.append(rev.edge)
+        return GraphDiff(edges_added=added, edges_removed=removed, weight_changes={})
         
     def get_revision_events_in_range(self, start_cycle: int, end_cycle: int):
         return [r for r in self.revision_events if start_cycle <= r.cycle <= end_cycle]

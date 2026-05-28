@@ -16,9 +16,16 @@ def run():
         python_path = os.path.join(env_dir, "bin", "python")
         
     print("Installing from local dists to simulate PyPI...")
-    # Simulated PyPI install using the local wheels to ensure correctness before actual push
-    subprocess.check_call([pip_path, "install", "./dist/causalnerve-1.0.1-py3-none-any.whl"])
-    subprocess.check_call([pip_path, "install", "./causalnerve-observe/dist/causalnerve_observe-1.0.1-py3-none-any.whl"])
+    import glob
+    core_wheels = glob.glob("./dist/causalnerve-*.whl")
+    obs_wheels = glob.glob("./causalnerve-observe/dist/causalnerve_observe-*.whl")
+    
+    if not core_wheels or not obs_wheels:
+        print("Missing wheels. Build them first with 'python -m build'")
+        sys.exit(1)
+        
+    subprocess.check_call([pip_path, "install", core_wheels[0]])
+    subprocess.check_call([pip_path, "install", obs_wheels[0]])
     
     test_script = """
 import sys

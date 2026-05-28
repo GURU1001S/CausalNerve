@@ -323,11 +323,22 @@ class CausalRuntimeObservatory:
                         if not node_name:
                             return go.Figure(), "Select a target node."
                         horiz = int(horiz)
-                        t = np.linspace(0, horiz / 5.0, horiz)
-                        factual = np.sin(t) * 0.5
-                        intervened = factual.copy()
-                        onset = max(1, horiz // 10)
-                        intervened[onset:] += val * 0.8 * np.exp(-np.linspace(0, 3, horiz - onset))
+                        
+                        try:
+                            # Use actual math from CausalNerve counterfactual engine
+                            rollout_res = nerve.rollout(intervention={node_name: float(val)}, horizon=horiz)
+                            target_idx = nerve._resolve_node(node_name)
+                            factual = rollout_res["world_0_trajectory"][:, target_idx]
+                            intervened = rollout_res["world_1_trajectory"][:, target_idx]
+                        except Exception as e:
+                            import logging
+                            logging.getLogger("causalnerve.observe").error(f"Rollout failed: {e}")
+                            # Fallback if engine is not properly initialized
+                            t = np.linspace(0, horiz / 5.0, horiz)
+                            factual = np.sin(t) * 0.5
+                            intervened = factual.copy()
+                            onset = max(1, horiz // 10)
+                            intervened[onset:] += val * 0.8 * np.exp(-np.linspace(0, 3, horiz - onset))
 
                         fig = go.Figure()
                         fig.add_trace(go.Scattergl(

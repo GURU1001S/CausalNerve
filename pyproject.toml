@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "causalnerve"
-version = "1.0.4"
+version = "1.0.5"
 description = "Adaptive Structural Dependency Learning for Non-Stationary Dynamical Systems"
 readme = "README.md"
 authors = [

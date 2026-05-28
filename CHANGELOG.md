@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.5] - 2026-05-28
+### Fixed
+- Re-added `GraphDiff` class to `causalnerve.memory`.
+- Fixed `SyntheticStreamGenerator.with_drift` to accept `n_cycles` parameter.
+- Fixed `CausalNerve.why()` to support `target` parameter properly.
+- Updated `StructuralReplayEngine.record_revision` and `RevisionRecord` to include `rationale` and `accepted`.
+- Fixed `get_graph_diff` implementation in replay engine.
+- Ensured `run_intervention` correctly utilizes real `nerve.rollout` mathematical computations instead of hardcoded demo logic.
+
 ## [1.0.4] - 2026-05-28
 ### Fixed
 - Fixed missing `retrieve_similar` and broken `predict_transition` in memory bank.
