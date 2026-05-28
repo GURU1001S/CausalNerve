@@ -60,7 +60,7 @@ jobs:
         run: pytest tests/ --maxfail=1 -v
         
       - name: Quick Reproduction Check (5 seeds)
-        run: python reproduce.py --quick --seeds 42,43,44,45,46
+        run: python scripts/reproduce.py --quick --seeds 42,43,44,45,46
         
       - name: Upload Logs on Failure
         if: failure()

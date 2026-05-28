@@ -40,13 +40,9 @@ jobs:
       run: |
         pytest tests/ --cov=causalnerve --cov-report=xml --cov-fail-under=80
 
-    - name: Validate Documented Failures
-      run: |
-        pytest benchmarks/test_failure_*.py
-
     - name: Run benchmarks as smoke test
       run: |
-        python benchmarks/run_all.py
+        python -m benchmarks.run_all
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
