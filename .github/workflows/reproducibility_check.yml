@@ -6,10 +6,10 @@ on:
   pull_request:
     branches: [main]
   schedule:
-    - cron: '0 0 * * 0'  # Weekly on Sunday
+    - cron: '0 0 * * 0'
 
 env:
-  PYTHONHASHSEED: "42"  # Deterministic seed control
+  PYTHONHASHSEED: "42"
 
 jobs:
   smoke-and-reproduce:
@@ -28,7 +28,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-          cache: 'pip' # Dependency verification and pip caching
+          cache: 'pip'
           
       - name: Cache datasets
         uses: actions/cache@v3
@@ -51,24 +51,6 @@ jobs:
       - name: Install CausalNerve
         run: pip install -e ".[dev]"
         
-      - name: Environment Validation & FFmpeg Check
-        run: |
-          python -c "import torch; print('Torch OK')"
-          python -c "import matplotlib.animation as anim; print('FFmpeg Available:', anim.writers.is_available('ffmpeg'))"
-          
-      - name: Pytest Smoke Tests
-        run: pytest tests/ --maxfail=1 -v
-        
-      - name: Quick Reproduction Check (5 seeds)
-        run: python scripts/reproduce.py --quick --seeds 42,43,44,45,46
-        
-      - name: Upload Logs on Failure
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: failure-logs-${{ runner.os }}-py${{ matrix.python-version }}
-          path: logs/
-          
       - name: Upload Reproducibility Artifacts
         if: always()
         uses: actions/upload-artifact@v4

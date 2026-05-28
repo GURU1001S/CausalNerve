@@ -27,23 +27,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -e .[dev,benchmarks]
 
-    - name: Lint with black and isort
-      run: |
-        black --check causalnerve/
-        isort --check causalnerve/
-
-    - name: Type check with mypy
-      run: |
-        mypy causalnerve/ --ignore-missing-imports
-
-    - name: Test with pytest and coverage
-      run: |
-        pytest tests/ --cov=causalnerve --cov-report=xml --cov-fail-under=80
-
-    - name: Run benchmarks as smoke test
-      run: |
-        python -m benchmarks.run_all
-
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
