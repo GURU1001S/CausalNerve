@@ -10,7 +10,9 @@ readme = "README.md"
 authors = [
     { name = "CausalNerve Core Team", email = "hello@example.com" }
 ]
+keywords = ["causal-inference", "time-series", "predictive-maintenance", "graph-neural-networks", "observability"]
 license = { text = "MIT" }
+
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Science/Research",

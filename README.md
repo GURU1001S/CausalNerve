@@ -2,6 +2,8 @@
   <img src="docs/logo.png" alt="CausalNerve Logo" width="250">
 </div>
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/causalnerve/causalnerve/blob/main/nasa_quickstart.ipynb)
+
 # 🏛️ CAUSALNERVE: THE DEFINITIVE ENTERPRISE GUIDE
 **Version: v1.0.5** | **Architecture Manual & Operational Bible**
 
@@ -23,6 +25,30 @@ CausalNerve is an advanced, production-grade structural causal inference and rea
 3. **Memory Archival**: `record_snapshot()` logs topological states into a timeline.
 4. **Intervention**: Anomalies trigger `why()` (Root Cause Analysis), followed by `do()` (Surgery), and `rollout()` (Prediction).
 5. **Observability**: The state is serialized and mounted to the reactive WebGL dashboard.
+
+### 1.4 The 10-Second Quickstart
+Copy and paste this snippet into your terminal. It sets up a real-time causal runtime without any configuration.
+```python
+import time
+import numpy as np
+from causalnerve import CausalNerve
+from causalnerve.datasets import SyntheticStreamGenerator
+
+# 1. Initialize the Causal Runtime
+nerve = CausalNerve(nodes=6, state_dim=32)
+
+# 2. Learn the Latent Graph Foundation
+print("Learning baseline structural graph...")
+historical_data = np.array(list(SyntheticStreamGenerator.stable(n_cycles=150)))
+nerve.fit(historical_data)
+
+# 3. Real-Time Telemetry Streaming
+print("Streaming live telemetry and computing causal leakage...")
+for obs in SyntheticStreamGenerator.with_drift(n_cycles=100):
+    res = nerve.step(obs)
+    print(f"Cycle {res.cycle} | Causal Leakage: {res.leakage:.4f} | Graph Changed: {res.graph_changed}")
+    time.sleep(0.1)
+```
 
 ---
 
