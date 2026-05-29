@@ -282,11 +282,12 @@ Evaluated on NASA C-MAPSS FD001 (Engines 81-100).
 ## Citation
 ```bibtex
 @software{causalnerve2026,
-  author = {CausalNerve Core Team},
-  title = {CausalNerve: Adaptive Structural Dependency Learning},
+  author = {S, Guru Prasaath},
+  title = {CausalNerve: A Real-Time Adaptive Causal Runtime for Continuously Evolving Dynamical Systems},
   year = {2026},
-  url = {https://github.com/guru-s/CausalNerve}
+  url = {https://github.com/causalnerve/causalnerve}
 }
+```
 ```
 
 ## License
