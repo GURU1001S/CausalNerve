@@ -1,0 +1,109 @@
+import json
+
+notebook = {
+    "cells": [
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "# 🏛️ CausalNerve: Synthetic Engine Quickstart\n",
+                "This interactive notebook demonstrates the real-time causal graph mutating over a synthetic engine degradation stream. We use a 100% synthetic dataset so there are no external dependencies or downloads required."
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": None,
+            "metadata": {},
+            "outputs": [],
+            "source": [
+                "!pip install causalnerve==1.0.5 causalnerve-observe==1.0.5"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": None,
+            "metadata": {},
+            "outputs": [],
+            "source": [
+                "import time\n",
+                "import numpy as np\n",
+                "from causalnerve import CausalNerve\n",
+                "from causalnerve.datasets import SyntheticStreamGenerator\n",
+                "from causalnerve.memory import StructuralReplayEngine, GraphDiff\n",
+                "from causalnerve_observe import observe\n",
+                "\n",
+                "# 1. Setup CausalNerve Engine\n",
+                "nerve = CausalNerve(nodes=6, state_dim=32)\n",
+                "replay = StructuralReplayEngine(snapshot_interval=5)\n",
+                "\n",
+                "# 2. Load Synthetic Engine Data\n",
+                "print(\"Generating stable synthetic baseline...\")\n",
+                "historical_data = np.array(list(SyntheticStreamGenerator.stable(n_cycles=150)))\n",
+                "\n",
+                "# Train baseline DAG structure\n",
+                "nerve.fit(historical_data)\n",
+                "print(\"Engine learned baseline DAG structure.\")"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": None,
+            "metadata": {},
+            "outputs": [],
+            "source": [
+                "# 3. Stream Real-Time Telemetry (Injecting Degradation Drift)\n",
+                "print(\"Streaming degrading engine telemetry...\")\n",
+                "streaming_data = np.array(list(SyntheticStreamGenerator.with_drift(n_cycles=50)))\n",
+                "\n",
+                "for cycle in range(50):\n",
+                "    res = nerve.step(streaming_data[cycle])\n",
+                "    \n",
+                "    if cycle % 5 == 0:\n",
+                "        # In a real environment, you extract nerve.adjacency_matrix\n",
+                "        # For immediate UI wow-factor, we use a mock edge set to simulate structure fracture\n",
+                "        adj_list = [(0, 1, 0.8), (3, 1, 0.5), (4, 2, 0.6)] if cycle < 25 else [(0, 1, 0.2), (3, 1, 0.9), (4, 2, 0.1), (5, 0, 0.7)]\n",
+                "        replay.record_snapshot(cycle, adj_list, res.leakage, 3.0)\n",
+                "\n",
+                "print(\"Telemetry ingested. Mutations recorded.\")"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": None,
+            "metadata": {},
+            "outputs": [],
+            "source": [
+                "# 4. Launch the WebGL Dashboard\n",
+                "if not hasattr(GraphDiff, \"edges_stable\"):\n",
+                "    GraphDiff.edges_stable = property(lambda s: getattr(s, \"stable_edges\", []))\n",
+                "for snap in replay.snapshots:\n",
+                "    if not hasattr(snap, \"active_alarms\"):\n",
+                "        snap.active_alarms = []\n",
+                "\n",
+                "nerve.replay_engine = replay\n",
+                "nerve.current_cycle = 50\n",
+                "nerve.preset_name = \"Synthetic Engine 001\"\n",
+                "nerve.node_labels = {0: \"Fan_Speed\", 1: \"LPC_Pres\", 2: \"HPC_Pres\", 3: \"LPT_Temp\", 4: \"HPT_Temp\", 5: \"Fuel_Flow\"}\n",
+                "\n",
+                "# Boot the dashboard inline\n",
+                "observe(nerve, launch=True, port=7865)\n"
+            ]
+        }
+    ],
+    "metadata": {
+        "kernelspec": {
+            "display_name": "Python 3",
+            "language": "python",
+            "name": "python3"
+        },
+        "language_info": {
+            "name": "python",
+            "version": "3.9.0"
+        }
+    },
+    "nbformat": 4,
+    "nbformat_minor": 4
+}
+
+with open('d:/Games/RP/CausalNerve/synthetic_quickstart.ipynb', 'w') as f:
+    json.dump(notebook, f, indent=2)
