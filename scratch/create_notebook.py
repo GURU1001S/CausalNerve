@@ -42,37 +42,23 @@ notebook = {
                 "\n",
                 "# Train baseline DAG structure\n",
                 "nerve.fit(historical_data)\n",
-                "print(\"Engine learned baseline DAG structure.\")"
-            ]
-        },
-        {
-            "cell_type": "code",
-            "execution_count": None,
-            "metadata": {},
-            "outputs": [],
-            "source": [
+                "print(\"Engine learned baseline DAG structure.\")\n",
+                "\n",
                 "# 3. Stream Real-Time Telemetry (Injecting Degradation Drift)\n",
                 "print(\"Streaming degrading engine telemetry...\")\n",
                 "streaming_data = np.array(list(SyntheticStreamGenerator.with_drift(n_cycles=50)))\n",
                 "\n",
                 "for cycle in range(50):\n",
                 "    res = nerve.step(streaming_data[cycle])\n",
-                "    \n",
+                "\n",
                 "    if cycle % 5 == 0:\n",
                 "        # In a real environment, you extract nerve.adjacency_matrix\n",
                 "        # For immediate UI wow-factor, we use a mock edge set to simulate structure fracture\n",
                 "        adj_list = [(0, 1, 0.8), (3, 1, 0.5), (4, 2, 0.6)] if cycle < 25 else [(0, 1, 0.2), (3, 1, 0.9), (4, 2, 0.1), (5, 0, 0.7)]\n",
                 "        replay.record_snapshot(cycle, adj_list, res.leakage, 3.0)\n",
                 "\n",
-                "print(\"Telemetry ingested. Mutations recorded.\")"
-            ]
-        },
-        {
-            "cell_type": "code",
-            "execution_count": None,
-            "metadata": {},
-            "outputs": [],
-            "source": [
+                "print(\"Telemetry ingested. Mutations recorded.\")\n",
+                "\n",
                 "# 4. Launch the WebGL Dashboard\n",
                 "# Fix GraphDiff v1.0.5 API drift for UI rendering\n",
                 "if not hasattr(GraphDiff, \"edges_stable\"):\n",
@@ -91,7 +77,7 @@ notebook = {
                 "nerve.node_labels = {0: \"Fan_Speed\", 1: \"LPC_Pres\", 2: \"HPC_Pres\", 3: \"LPT_Temp\", 4: \"HPT_Temp\", 5: \"Fuel_Flow\"}\n",
                 "\n",
                 "# Boot the dashboard inline\n",
-                "observe(nerve, launch=True, port=7865)\n"
+                "observe(nerve, launch=True, port=7866)\n"
             ]
         }
     ],
