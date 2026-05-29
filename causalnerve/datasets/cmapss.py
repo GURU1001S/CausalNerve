@@ -13,7 +13,8 @@ class CMAPSSDataset(CausalDataset):
     Auto-downloads from NASA data repository if not cached.
     """
     
-    DOWNLOAD_URL = "https://ti.arc.nasa.gov/m/project/prognostic-repository/CMAPSSData.zip"
+    DOWNLOAD_URL = "https://data.nasa.gov/docs/legacy/CMAPSSData.zip"
+
     
     def __init__(self, subset: str = "FD001", cache_dir: str = r"D:\Games\RP\datasets\cmapss", normalize: bool = True, include_settings: bool = True, download: bool = True):
         self.subset = subset
