@@ -2,7 +2,7 @@
   <img src="docs/logo.png" alt="CausalNerve Logo" width="250">
 </div>
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/causalnerve/causalnerve/blob/main/nasa_quickstart.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/GURU1001S/CausalNerve/blob/main/nasa_quickstart.ipynb)
 
 # 🏛️ CAUSALNERVE: THE DEFINITIVE ENTERPRISE GUIDE
 **Version: v1.0.5** | **Architecture Manual & Operational Bible**
